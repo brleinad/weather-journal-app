@@ -80,9 +80,9 @@ async function updateUI() {
       const allData = await request.json();
       const lastData = allData[allData.length-1];
       console.log('Updating UI with', lastData);
-      document.getElementById('temp').textContent = 'Temperature: ' + lastData.temperature + 'C';
-      document.getElementById('date').textContent = 'Date: ' + lastData.date;
-      document.getElementById('content').textContent = 'Entry: ' + lastData.entry;
+      document.getElementById('temp').innerHTML = 'Temperature: ' + lastData.temperature + 'C';
+      document.getElementById('date').innerHTML = 'Date: ' + lastData.date;
+      document.getElementById('content').innerHTML = 'Entry: ' + lastData.entry;
 
    }catch(error) {
       console.log('ERROR:', error);
