@@ -1,5 +1,5 @@
 /* Global Variables */
-const openWeatherKey = "3f44a3471a1449b054d69af2b59fef2d"
+const openWeatherKey = "3f44a3471a1449b054d69af2b59fef2d&units=metric"
 const openWeatherURL = 'https://api.openweathermap.org/data/2.5/weather?'; //zip={zip code},{country code}&appid={your api key}'
 
 // Create a new date instance dynamically with JS
@@ -22,7 +22,6 @@ function getWeatherData(event) {
       postWeatherData('/post', data);
       updateUI();
    })
-   //.then(updateUI())
 }  
 
 /*
@@ -36,7 +35,7 @@ async function getFromAPI(baseURL, zipCode, key) {
    try{
       const tmpData = await response.json();
       const data = {};
-      data['temperature'] = kelvinInCelsius(tmpData.main.temp);
+      data['temperature'] = tmpData.main.temp;
       //console.log(tmpData);
       console.log(data);
       return data;
@@ -77,8 +76,7 @@ async function postWeatherData(url = '', data = {}) {
 async function updateUI() {
    const request = await fetch('/get');
    try {
-      const allData = await request.json();
-      const lastData = allData[allData.length-1];
+      const lastData = await request.json();
       console.log('Updating UI with', lastData);
       document.getElementById('temp').innerHTML = 'Temperature: ' + lastData.temperature + 'C';
       document.getElementById('date').innerHTML = 'Date: ' + lastData.date;
@@ -91,6 +89,7 @@ async function updateUI() {
 }
 
 /*
+ * NOTE: Note needed anymore but leaving it for future reference.
  * Convert from Kelvin to degrees Celsius
  * @param {Number} temp - the temperature in Kelvin.
  * */
