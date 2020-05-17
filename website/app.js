@@ -1,5 +1,5 @@
 /* Global Variables */
-const openWeatherKey = "3f44a3471a1449b054d69af2b59fef2d&units=metric"
+const openWeatherKey = "&appid=3f44a3471a1449b054d69af2b59fef2d&units=metric"
 const openWeatherURL = 'https://api.openweathermap.org/data/2.5/weather?'; //zip={zip code},{country code}&appid={your api key}'
 
 // Create a new date instance dynamically with JS
@@ -31,7 +31,7 @@ function getWeatherData(event) {
  * @param (String) key - The key to use the API.
  * */
 async function getFromAPI(baseURL, zipCode, key) {
-   const response = await fetch(`${baseURL}zip=${zipCode},us&appid=${key}`);
+   const response = await fetch(`${baseURL}zip=${zipCode},us${key}`);
    try{
       const tmpData = await response.json();
       const data = {};
